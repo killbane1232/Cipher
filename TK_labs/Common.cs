@@ -34,7 +34,7 @@ namespace TK_labs
                 else
                     dict.Add(c, value);
             }
-            dict.OrderBy(x => x.Value);
+            dict = new Dictionary<char, float>(dict.OrderByDescending(x => x.Value));
             return dict;
         }
     }
