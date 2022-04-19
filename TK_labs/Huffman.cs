@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TK_labs
 {
-    interface ICoding
+    public class Huffman : ICoding
     {
         public Dictionary<char, string> Encoding { get; }
         public Dictionary<char, float> Frequency { get; }
@@ -15,9 +15,25 @@ namespace TK_labs
         public string DecodedText { get; }
         public string InputFile { get; }
         public float CompressionRatio { get; }
-        public void GetEncoding();
-        public string Encode();
-        public string Decode();
-        public float GetCompressionRatio();
+
+        public string Decode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Encode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetCompressionRatio()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetEncoding()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
