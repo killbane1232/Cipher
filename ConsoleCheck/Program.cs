@@ -11,6 +11,10 @@ namespace ConsoleCheck
             Console.WriteLine(shf.EncodedText);
             Console.WriteLine(shf.DecodedText);
             Console.WriteLine(shf.CompressionRatio);
+            Huffman h = new Huffman("anna.txt", true);
+            Console.WriteLine(h.EncodedText);
+            Console.WriteLine(h.DecodedText);
+            Console.WriteLine(h.CompressionRatio);
         }
     }
 }
