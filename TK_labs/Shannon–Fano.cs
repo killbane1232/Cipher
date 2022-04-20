@@ -9,12 +9,12 @@ namespace TK_labs
     public class Shannon_Fano : ICoding
     {
         public Dictionary<char, string> Encoding { get; private set; }
-        public Dictionary<char, float> Frequency { get; }
+        public Dictionary<char, double> Frequency { get; }
         public string InputText { get; }
         public string EncodedText { get; }
         public string DecodedText { get; }
         public string InputFile { get; }
-        public float CompressionRatio { get { return GetCompressionRatio(); } }
+        public double CompressionRatio { get { return GetCompressionRatio(); } }
 
         public Shannon_Fano(string text) 
         { 
@@ -77,18 +77,15 @@ namespace TK_labs
             return;
         }
 
-        public float GetCompressionRatio()
+        public double GetCompressionRatio()
         {
-            float S0, SC;
-            S0 = InputText.Length * 8;
-            SC = EncodedText.Length;
-            return (float) S0/(SC + 1);
+            return (double)(InputText.Length * 8) / (EncodedText.Length);
         }
 
-        private char GetMedium(Dictionary<char, float> dict)
+        private char GetMedium(Dictionary<char, double> dict)
         {
             var sum = dict.Sum(x => x.Value);
-            double value = 0, half = (float)sum / 2;
+            double value = 0, half = (double)sum / 2;
             if (dict.First().Value > half)
                 return dict.Take(2).Last().Key;
             foreach (var el in dict)
@@ -102,7 +99,7 @@ namespace TK_labs
             return 0.ToString()[0];
         }
 
-        private void Split(string branch, Dictionary<char, float> dict)
+        private void Split(string branch, Dictionary<char, double> dict)
         {
             if (dict.Count == 1)
             {
@@ -113,17 +110,17 @@ namespace TK_labs
             if (dict.Count != Encoding.Count)
                 foreach(var el in dict)
                     Encoding[el.Key] += branch;
-            Dictionary<char, float> left, right;
+            Dictionary<char, double> left, right;
             if (dict.Count != 2)
             {
                 var center = GetMedium(dict);
-                left = new Dictionary<char, float>(dict.TakeWhile(el => el.Key != center));
-                right = new Dictionary<char, float>(dict.TakeLast(dict.Count - left.Count));
+                left = new Dictionary<char, double>(dict.TakeWhile(el => el.Key != center));
+                right = new Dictionary<char, double>(dict.TakeLast(dict.Count - left.Count));
             }
             else
             {
-                left = new Dictionary<char, float>(dict.Take(1));
-                right = new Dictionary<char, float>(dict.TakeLast(1));
+                left = new Dictionary<char, double>(dict.Take(1));
+                right = new Dictionary<char, double>(dict.TakeLast(1));
             }
             Split("0", left);
             Split("1", right);

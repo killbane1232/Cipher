@@ -9,12 +9,12 @@ namespace TK_labs
     public class Huffman : ICoding
     {
         public Dictionary<char, string> Encoding { get; private set; }
-        public Dictionary<char, float> Frequency { get; }
+        public Dictionary<char, double> Frequency { get; }
         public string InputText { get; }
         public string EncodedText { get; }
         public string DecodedText { get; }
         public string InputFile { get; }
-        public float CompressionRatio { get { return GetCompressionRatio(); } }
+        public double CompressionRatio { get { return GetCompressionRatio(); } }
 
         public Huffman(string text)
         {
@@ -66,12 +66,9 @@ namespace TK_labs
             return result.ToString();
         }
 
-        public float GetCompressionRatio()
+        public double GetCompressionRatio()
         {
-            float S0, SC;
-            S0 = InputText.Length * 8;
-            SC = EncodedText.Length;
-            return (float)S0 / (SC + 1);
+            return (double) (InputText.Length * 8) / (EncodedText.Length);
         }
 
         public void GetEncoding()
@@ -82,7 +79,7 @@ namespace TK_labs
                 Encoding.Add(el.Key, "");
             }
 
-            var freq_str = new Dictionary<string, float>(from el in Frequency select new KeyValuePair<string, float>(el.Key.ToString(), el.Value));
+            var freq_str = new Dictionary<string, double>(from el in Frequency select new KeyValuePair<string, double>(el.Key.ToString(), el.Value));
             while (freq_str.Count != 1)
             {
                 var min1 = freq_str.Last();
@@ -98,7 +95,7 @@ namespace TK_labs
                     Encoding[c] = "0" + Encoding[c];
                 }
                 freq_str.Add(min1.Key + min2.Key, min1.Value + min2.Value);
-                freq_str = new Dictionary<string, float>(freq_str.OrderByDescending(x => x.Value));
+                freq_str = new Dictionary<string, double>(freq_str.OrderByDescending(x => x.Value));
             }
         }
     }

@@ -23,10 +23,10 @@ namespace TK_labs
             }
         }
 
-        public static Dictionary<char, float> GetFreqDictionary(string text)
+        public static Dictionary<char, double> GetFreqDictionary(string text)
         {
-            Dictionary<char, float> dict = new Dictionary<char, float>();
-            float value = (float) 1 / text.Length;
+            Dictionary<char, double> dict = new Dictionary<char, double>();
+            double value = (double) 1 / text.Length;
             foreach (char c in text)
             {
                 if (dict.ContainsKey(c))
@@ -34,7 +34,7 @@ namespace TK_labs
                 else
                     dict.Add(c, value);
             }
-            dict = new Dictionary<char, float>(dict.OrderByDescending(x => x.Value));
+            dict = new Dictionary<char, double>(dict.OrderByDescending(x => x.Value));
             return dict;
         }
     }
