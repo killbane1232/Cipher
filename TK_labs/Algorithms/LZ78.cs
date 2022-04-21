@@ -23,28 +23,17 @@ namespace TK_labs
         public string Decode()
         {
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < InputText.Length; i++)
+            var dictionary = new List<string>();
+            dictionary.Add("");
+            for (int i = 0; i < EncodedText.Length; i++)
             {
-                var dispStr = new StringBuilder();
-                dispStr.Append(InputText[i]);
-                while (InputText[i] != ',')
-                    dispStr.Append(InputText[i++]);
-                var disp = int.Parse(dispStr.ToString());
+                var indexStr = new StringBuilder();
+                while(InputText[i]!='|')
+                    indexStr.Append(EncodedText[i++]);
+                var index =int.Parse(indexStr.ToString());
                 i++;
-                var cntStr = new StringBuilder();
-                cntStr.Append(InputText[i]);
-                while (InputText[i] != ',')
-                    cntStr.Append(InputText[i++]);
-                var cnt = int.Parse(cntStr.ToString());
-                var ch = InputText[++i];
-                i++;
-                if (cnt != 0 && disp != 0)
-                {
-                    int position = result.Length - disp;
-                    for (int j = 0; j < cnt; j++)
-                        result.Append(result[position + j]);
-                }
-                result.Append(ch);
+                result.Append(dictionary[index]);
+                result.Append(EncodedText[i]);
             }
             return result.ToString();
         }
@@ -55,26 +44,30 @@ namespace TK_labs
                 throw new Exception("Input text is empty!");
             StringBuilder result = new StringBuilder();
             var dictionary = new List<string>();
-
+            dictionary.Add("");
             for (int i = 0; i < InputText.Length; i++)
             {
-                int maxLen = 0;
                 int index = 0;
-                for (int j = 0; j < i; j++)
+                int len = 0;
+                for (int j = 1; j < dictionary.Count; j++)
                 {
-                    int len = 0;
-                    for (int k = j; k < i; k++)
-                        if (InputText[k] == InputText[i + k - j])
+                    if (dictionary[j].Length <= len)
+                        continue;
+                    bool flag = true;
+                    for(int k =0;k<dictionary[j].Length;k++)
+                        if(dictionary[j][k] != InputText[i+k])
                         {
-                            len++;
+                            flag = false;
                         }
-                    if (len > maxLen)
+                    if (flag)
                     {
-                        maxLen = len;
-                        index = i - j;
+                        len = dictionary[j].Length;
+                        index = j;
                     }
                 }
-                result.Append($"{index},{maxLen},{InputText[i]}|");
+                i += len;
+                result.Append($"{index}|{InputText[i]}");
+                dictionary.Add(dictionary[index] + InputText[i]);
             }
 
             return result.ToString();
