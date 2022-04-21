@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace TK_labs
 {
@@ -53,6 +54,7 @@ namespace TK_labs
             if (String.IsNullOrEmpty(InputText))
                 throw new Exception("Input text is empty!");
             StringBuilder result = new StringBuilder();
+            var dictionary = new List<string>();
 
             for (int i = 0; i < InputText.Length; i++)
             {

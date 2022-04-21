@@ -72,6 +72,7 @@ namespace TK_labs
                         index = i-j;
                     }
                 }
+                i += maxLen;
                 result.Append($"{index},{maxLen},{InputText[i]}|");
             }
 
