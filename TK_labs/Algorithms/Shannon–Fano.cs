@@ -6,30 +6,19 @@ using System.Threading.Tasks;
 
 namespace TK_labs
 {
-    public class Shannon_Fano : ICoding
+    public class Shannon_Fano :Algorithm, ICoding
     {
-        public Dictionary<char, string> Encoding { get; private set; }
-        public Dictionary<char, double> Frequency { get; }
-        public string InputText { get; }
-        public string EncodedText { get; }
-        public string DecodedText { get; }
-        public string InputFile { get; }
         public double CompressionRatio { get { return GetCompressionRatio(); } }
 
-        public Shannon_Fano(string text) 
+        public Shannon_Fano(string text) :base(text)
         { 
-            InputText = text;
-            Frequency = Common.GetFreqDictionary(InputText);
             GetEncoding();
             EncodedText = Encode();
             DecodedText = Decode();
         }
 
-        public Shannon_Fano(string fileName, bool noMatter)
+        public Shannon_Fano(string fileName, bool noMatter):base(fileName, noMatter)
         {
-            InputFile = fileName;
-            InputText = Common.ReadFromFile(InputFile);
-            Frequency = Common.GetFreqDictionary(InputText);
             GetEncoding();
             EncodedText = Encode();
             DecodedText = Decode();

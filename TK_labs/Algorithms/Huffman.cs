@@ -6,30 +6,18 @@ using System.Threading.Tasks;
 
 namespace TK_labs
 {
-    public class Huffman : ICoding
+    public class Huffman : Algorithm, ICoding
     {
-        public Dictionary<char, string> Encoding { get; private set; }
-        public Dictionary<char, double> Frequency { get; }
-        public string InputText { get; }
-        public string EncodedText { get; }
-        public string DecodedText { get; }
-        public string InputFile { get; }
         public double CompressionRatio { get { return GetCompressionRatio(); } }
-
-        public Huffman(string text)
+        public Huffman(string text):base(text)
         {
-            InputText = text;
-            Frequency = Common.GetFreqDictionary(InputText);
             GetEncoding();
             EncodedText = Encode();
             DecodedText = Decode();
         }
 
-        public Huffman(string fileName, bool noMatter)
+        public Huffman(string fileName, bool noMatter):base(fileName, false)
         {
-            InputFile = fileName;
-            InputText = Common.ReadFromFile(InputFile);
-            Frequency = Common.GetFreqDictionary(InputText);
             GetEncoding();
             EncodedText = Encode();
             DecodedText = Decode();
@@ -66,11 +54,6 @@ namespace TK_labs
             return result.ToString();
         }
 
-        public double GetCompressionRatio()
-        {
-            return (double) (InputText.Length * 8) / (EncodedText.Length);
-        }
-
         public void GetEncoding()
         {
             Encoding = new Dictionary<char, string>();
@@ -97,6 +80,11 @@ namespace TK_labs
                 freq_str.Add(min1.Key + min2.Key, min1.Value + min2.Value);
                 freq_str = new Dictionary<string, double>(freq_str.OrderByDescending(x => x.Value));
             }
+        }
+
+        public double GetCompressionRatio()
+        {
+            return (double)(InputText.Length * 8) / (EncodedText.Length);
         }
     }
 }

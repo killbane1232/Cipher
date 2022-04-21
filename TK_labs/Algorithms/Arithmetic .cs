@@ -6,29 +6,19 @@ using System.Threading.Tasks;
 
 namespace TK_labs
 {
-    public class Arithmetic : ICoding
+    public class Arithmetic : Algorithm, ICoding
     {
-        public Dictionary<char, string> Encoding { get; private set; }
-        public Dictionary<char, double> Frequency { get; }
-        public string InputText { get; }
-        public string EncodedText { get; private set; }
-        public string DecodedText { get; }
-        public string InputFile { get; }
         public double CompressionRatio { get { return GetCompressionRatio(); } }
         public Dictionary<char, double> RangeTable { get; private set; }
 
-        public Arithmetic(string text)
+        public Arithmetic(string text):base(text)
         {
-            InputText = text;
-            Frequency = Common.GetFreqDictionary(InputText);
             EncodedText = Encode();
             DecodedText = Decode();
         }
 
-        public Arithmetic(string fileName, bool noMatter)
+        public Arithmetic(string fileName, bool noMatter):base(fileName, noMatter)
         {
-            InputText = Common.ReadFromFile(fileName);
-            Frequency = Common.GetFreqDictionary(InputText);
             EncodedText = Encode();
             DecodedText = Decode();
         }
@@ -103,11 +93,6 @@ namespace TK_labs
                 number /= 2;
             }
             return (double)(InputText.Length * 8) / result.Length;
-        }
-
-        public void GetEncoding()
-        {
-            throw new NotImplementedException();
         }
     }
 }
