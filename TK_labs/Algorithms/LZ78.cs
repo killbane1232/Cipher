@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TK_labs
 {
-    internal class LZ78 : Algorithm, ICoding
+    public class LZ78 : Algorithm, ICoding
     {
         public double CompressionRatio { get => GetCompressionRatio(); }
 

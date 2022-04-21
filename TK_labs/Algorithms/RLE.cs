@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TK_labs
 {
-    internal class RLE : Algorithm, ICoding
+    public class RLE : Algorithm, ICoding
     {
         public double CompressionRatio { get { return GetCompressionRatio(); } }
         public RLE(string text):base(text)

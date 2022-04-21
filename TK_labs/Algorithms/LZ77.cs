@@ -3,7 +3,7 @@ using System.Text;
 
 namespace TK_labs
 {
-    internal class LZ77 : Algorithm, ICoding
+    public class LZ77 : Algorithm, ICoding
     {
         public double CompressionRatio { get => GetCompressionRatio(); }
 

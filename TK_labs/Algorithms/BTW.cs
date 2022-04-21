@@ -3,7 +3,7 @@ using System.Text;
 
 namespace TK_labs
 {
-    internal class BTW :Algorithm, ICoding
+    public class BTW :Algorithm, ICoding
     {
         public double CompressionRatio { get { return GetCompressionRatio(); } }
         public BTW(string text):base(text)
