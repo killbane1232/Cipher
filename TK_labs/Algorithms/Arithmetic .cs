@@ -4,14 +4,15 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Rationals;
+//using HigherArithmetics.Numerics;
+using LinearNet.Structs.Fields;
 
 namespace TK_labs
 {
     public class Arithmetic : Algorithm, ICoding
     {
         public double CompressionRatio { get { return GetCompressionRatio(); } }
-        public Dictionary<char, Rational> RangeTable { get; private set; }
+        public Dictionary<char, BigDecimal> RangeTable { get; private set; }
         public Arithmetic(string text):base(text)
         {
             EncodedText = Encode();
@@ -27,27 +28,27 @@ namespace TK_labs
         public string Decode()
         {
             StringBuilder result = new StringBuilder();
-            Rational encoded = Rational.Parse(EncodedText);
-            Rational currentUp = 1, currentDown = 0;
-            KeyValuePair<char, Rational> c;
+            BigDecimal encoded = BigDecimal.Parse(EncodedText);
+            BigDecimal currentUp = 1, currentDown = 0;
+            KeyValuePair<char, BigDecimal> c;
             while (currentDown != encoded)
             {
                 SetRangeTable(currentDown, currentUp);
-                c = FindRange((Rational)encoded);
+                c = FindRange((BigDecimal)encoded);
                 result.Append(c.Key);
                 currentUp = RangeTable[c.Key];
-                currentDown = RangeTable[c.Key] - (Rational)Frequency[c.Key] * (RangeTable.Last().Value - RangeTable.First().Value);
+                currentDown = RangeTable[c.Key] - (BigDecimal)Frequency[c.Key] * (RangeTable.Last().Value - RangeTable.First().Value);
             }
 
             return result.ToString();
         }
 
-        private KeyValuePair<char, Rational> FindRange(Rational current)
+        private KeyValuePair<char, BigDecimal> FindRange(BigDecimal current)
         {
-            KeyValuePair<char, Rational> ret = new KeyValuePair<char, Rational>('1', -1);
+            KeyValuePair<char, BigDecimal> ret = new KeyValuePair<char, BigDecimal>('1', -1);
             foreach (var el in RangeTable)
             {
-                if (el.Value >= current)
+                if (el.Value.CompareTo(current)>=0)
                 {
                     return el;
                 }
@@ -57,7 +58,7 @@ namespace TK_labs
 
         public string Encode()
         {
-            Rational currentUp = 1, currentDown = 0;
+            BigDecimal currentUp = 1, currentDown = 0;
             Frequency = GetFreqDictionary(InputText);
             
             foreach(var c in InputText)
@@ -66,19 +67,19 @@ namespace TK_labs
                 SetRangeTable(currentDown, currentUp);
                 
                 currentUp = RangeTable[c];
-                currentDown = RangeTable[c] - (Rational)Frequency[c] * (RangeTable.Last().Value - RangeTable.First().Value);
+                currentDown = RangeTable[c] - (BigDecimal)Frequency[c] * (RangeTable.Last().Value - RangeTable.First().Value);
             }
             return currentDown.ToString();
         }
 
-        private void SetRangeTable(Rational left, Rational right)
+        private void SetRangeTable(BigDecimal left, BigDecimal right)
         {
-            RangeTable = new Dictionary<char, Rational>();
-            Rational prev = left;
+            RangeTable = new Dictionary<char, BigDecimal>();
+            BigDecimal prev = left;
             foreach (var c in Frequency)
             {
-                RangeTable.Add(c.Key, (Rational)c.Value * (right - left) + prev);
-                prev += (Rational)c.Value * (right - left);
+                RangeTable.Add(c.Key, (BigDecimal)c.Value * (right - left) + prev);
+                prev += (BigDecimal)c.Value * (right - left);
             }
         }
 
