@@ -7,7 +7,7 @@ namespace ConsoleCheck
     {
         static void Main(string[] args)
         {
-            string fileName = "aabcb.txt";
+            string fileName = "simple.txt";
             try
             {
                 Console.WriteLine("SHF");
