@@ -46,13 +46,15 @@ namespace TK_labs
             StringBuilder result = new StringBuilder();
             var dictionary = new List<string>();
             dictionary.Add("");
-            for (int i = 0; i < InputText.Length; i++)
+            int length = InputText.Length;
+            //InputText += " ";
+            for (int i = 0; i < length; i++)
             {
                 int index = 0;
                 int len = 0;
                 for (int j = 1; j < dictionary.Count; j++)
                 {
-                    if (dictionary[j].Length <= len)
+                    if (dictionary[j].Length <= len || dictionary[j].Length+i>= length)
                         continue;
                     bool flag = true;
                     for(int k =0;k<dictionary[j].Length;k++)
