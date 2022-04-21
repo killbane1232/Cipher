@@ -10,6 +10,7 @@ namespace ConsoleCheck
             string fileName = "simple.txt";
             try
             {
+                Console.WriteLine("SHF");
                 Shannon_Fano shf = new Shannon_Fano(fileName, true);
                 Console.WriteLine(shf.EncodedText);
                 Console.WriteLine(shf.DecodedText);
@@ -21,6 +22,7 @@ namespace ConsoleCheck
             }
             try
             {
+                Console.WriteLine("Huffman");
                 Huffman h = new Huffman(fileName, true);
                 Console.WriteLine(h.EncodedText);
                 Console.WriteLine(h.DecodedText);
@@ -32,6 +34,7 @@ namespace ConsoleCheck
             }
             try
             {
+                Console.WriteLine("Arthmetic");
                 Arithmetic a = new Arithmetic(fileName, true);
                 Console.WriteLine(a.EncodedText);
                 Console.WriteLine(a.DecodedText);
@@ -43,6 +46,7 @@ namespace ConsoleCheck
             }
             try
             {
+                Console.WriteLine("LZ77");
                 LZ77 lz77 = new LZ77(fileName, true);
                 Console.WriteLine(lz77.EncodedText);
                 Console.WriteLine(lz77.DecodedText);
@@ -54,6 +58,7 @@ namespace ConsoleCheck
             }
             try
             {
+                Console.WriteLine("LZ78");
                 LZ78 lz78 = new LZ78(fileName, true);
                 Console.WriteLine(lz78.EncodedText);
                 Console.WriteLine(lz78.DecodedText);
@@ -65,6 +70,7 @@ namespace ConsoleCheck
             }
             try
             {
+                Console.WriteLine("BTW");
                 BTW btw = new BTW(fileName, true);
                 Console.WriteLine(btw.EncodedText);
                 Console.WriteLine(btw.DecodedText);
@@ -74,6 +80,7 @@ namespace ConsoleCheck
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.WriteLine("RLE");
             RLE rle = new RLE(fileName, true);
             Console.WriteLine(rle.EncodedText);
             Console.WriteLine(rle.DecodedText);
