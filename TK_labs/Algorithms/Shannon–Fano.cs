@@ -62,7 +62,7 @@ namespace TK_labs
             {
                 Encoding.Add(el.Key, "");
             }
-            Split("", Frequency);
+            Split("0", Frequency);
             return;
         }
 

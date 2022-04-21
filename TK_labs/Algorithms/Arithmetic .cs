@@ -10,32 +10,44 @@ namespace TK_labs
     {
         public double CompressionRatio { get { return GetCompressionRatio(); } }
         public Dictionary<char, double> RangeTable { get; private set; }
-
+        private string Offset;
         public Arithmetic(string text):base(text)
         {
+            Offset = "";
             EncodedText = Encode();
             DecodedText = Decode();
         }
 
         public Arithmetic(string fileName, bool noMatter):base(fileName, noMatter)
         {
+            Offset = "";
             EncodedText = Encode();
             DecodedText = Decode();
         }
 
         public string Decode()
         {
+            string offset = "";
             StringBuilder result = new StringBuilder();
-            double encoded = Convert.ToDouble(EncodedText);
+            double encoded = Convert.ToDouble(EncodedText) / Math.Pow(10, Offset.Length);
             double currentUp = 1, currentDown = 0, prevUp = -1, prevDown = -1;
-
-            while (currentDown != encoded)
+            SetRangeTable(currentDown, currentUp);
+            var c = FindRange(encoded);
+            while (Offset != offset || c.Value != -1 && c.Key != '\0' || currentDown != encoded)
             {
+                double val_down = Math.Floor(currentDown * 10 % 10), val_up = Math.Floor(currentUp * 10 % 10);
+                if (val_down == val_up)
+                {
+                    if (val_up != 0 && val_down != 0)
+                    {
+                        offset += val_up.ToString();
+                        currentDown = currentDown * 10 - val_down;
+                        currentUp = currentUp * 10 - val_up;
+                    }
+                }
                 SetRangeTable(currentDown, currentUp);
-                var c = FindRange((double)encoded);
+                c = FindRange((double)encoded);
                 result.Append(c.Key);
-                prevDown = currentDown;
-                prevUp = currentUp;
                 currentUp = RangeTable[c.Key];
                 currentDown = RangeTable[c.Key] - Frequency[c.Key] * (RangeTable.Last().Value - RangeTable.First().Value);
             }
@@ -48,7 +60,7 @@ namespace TK_labs
             KeyValuePair<char, double> ret = new KeyValuePair<char, double>('1', -1);
             foreach (var el in RangeTable)
             {
-                if (el.Value > current)
+                if (el.Value >= current)
                 {
                     return el;
                 }
@@ -59,17 +71,27 @@ namespace TK_labs
         public string Encode()
         {
             double currentUp = 1, currentDown = 0, prevUp = 1, prevDown = 0;
+            InputText += "\0";
+            Frequency = GetFreqDictionary(InputText);
             
             foreach(var c in InputText)
             {
+                double val_down = Math.Floor(currentDown * 10 % 10), val_up = Math.Floor(currentUp * 10 % 10);
+                if (val_down == val_up)
+                {
+                    if (val_up != 0 && val_down != 0)
+                    {
+                        Offset += val_up.ToString();
+                        currentDown = currentDown * 10 - val_down;
+                        currentUp = currentUp * 10 - val_up;
+                    }
+                }    
                 SetRangeTable(currentDown, currentUp);
                 
-                prevDown = currentDown;
-                prevUp = currentUp;
                 currentUp = RangeTable[c];
                 currentDown = RangeTable[c] - Frequency[c] * (RangeTable.Last().Value - RangeTable.First().Value);
             }
-            return currentDown.ToString();
+            return (currentDown + Convert.ToDouble(Offset)).ToString();
         }
 
         private void SetRangeTable(double left, double right)

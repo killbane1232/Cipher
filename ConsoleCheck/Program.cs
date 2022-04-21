@@ -7,7 +7,7 @@ namespace ConsoleCheck
     {
         static void Main(string[] args)
         {
-            string fileName = "simple.txt";
+            string fileName = "aabcb.txt";
             try
             {
                 Console.WriteLine("SHF");
@@ -80,11 +80,18 @@ namespace ConsoleCheck
             {
                 Console.WriteLine(ex.Message);
             }
-            Console.WriteLine("RLE");
-            RLE rle = new RLE(fileName, true);
-            Console.WriteLine(rle.EncodedText);
-            Console.WriteLine(rle.DecodedText);
-            Console.WriteLine(rle.CompressionRatio);
+            try
+            {
+                Console.WriteLine("RLE");
+                RLE rle = new RLE(fileName, true);
+                Console.WriteLine(rle.EncodedText);
+                Console.WriteLine(rle.DecodedText);
+                Console.WriteLine(rle.CompressionRatio);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

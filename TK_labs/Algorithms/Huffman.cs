@@ -63,6 +63,8 @@ namespace TK_labs
             }
 
             var freq_str = new Dictionary<string, double>(from el in Frequency select new KeyValuePair<string, double>(el.Key.ToString(), el.Value));
+            if (freq_str.Count == 1)
+                Encoding[Encoding.First().Key] = "0";
             while (freq_str.Count != 1)
             {
                 var min1 = freq_str.Last();
