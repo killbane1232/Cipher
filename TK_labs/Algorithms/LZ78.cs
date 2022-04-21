@@ -28,10 +28,11 @@ namespace TK_labs
             for (int i = 0; i < EncodedText.Length; i++)
             {
                 var indexStr = new StringBuilder();
-                while(InputText[i]!='|')
+                while(EncodedText[i]!='|')
                     indexStr.Append(EncodedText[i++]);
                 var index =int.Parse(indexStr.ToString());
                 i++;
+                dictionary.Add(dictionary[index]+ EncodedText[i]);
                 result.Append(dictionary[index]);
                 result.Append(EncodedText[i]);
             }

@@ -22,20 +22,18 @@ namespace TK_labs
         public string Decode()
         {
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < InputText.Length; i++)
+            for (int i = 0; i < EncodedText.Length; i++)
             {
                 var dispStr = new StringBuilder();
-                dispStr.Append(InputText[i]);
-                while(InputText[i] !=',')
-                    dispStr.Append(InputText[i++]);
+                while(EncodedText[i] !=',')
+                    dispStr.Append(EncodedText[i++]);
                 var disp = int.Parse(dispStr.ToString());
                 i++;
                 var cntStr = new StringBuilder();
-                cntStr.Append(InputText[i]);
-                while (InputText[i] != ',')
-                    cntStr.Append(InputText[i++]);
+                while (EncodedText[i] != ',')
+                    cntStr.Append(EncodedText[i++]);
                 var cnt = int.Parse(cntStr.ToString());
-                var ch = InputText[++i];
+                var ch = EncodedText[++i];
                 i++;
                 if (cnt != 0 && disp != 0)
                 {
@@ -54,7 +52,9 @@ namespace TK_labs
                 throw new Exception("Input text is empty!");
             StringBuilder result = new StringBuilder();
 
-            for (int i = 0; i < InputText.Length; i++)
+            int length  = InputText.Length;
+            InputText += " ";
+            for (int i = 0; i < length; i++)
             {
                 int maxLen = 0;
                 int index = 0;
@@ -62,7 +62,7 @@ namespace TK_labs
                 {
                     int len = 0;
                     for (int k = j; k < i; k++)
-                        if (InputText[k] == InputText[i + k - j])
+                        if (i + k - j< InputText.Length && InputText[k] == InputText[i + k - j])
                         {
                             len++;
                         }

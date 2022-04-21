@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace TK_labs
 {
@@ -59,12 +60,15 @@ namespace TK_labs
                 for (var j = 1; j < InputText.Length; j++)
                     list[i].Append(InputText[(i + j) % len]);
             }
-            list.Sort();
+            var listStrs = new List<string>(len);
+            for(int i= 0; i < len; i++)
+                listStrs.Add(list[i].ToString());
+            listStrs.Sort();
             var result = new StringBuilder();
             var index = len / 2;
-            while (list[index].ToString() != InputText)
+            while (listStrs[index] != InputText)
             {
-                switch (list[index].ToString().CompareTo(InputText))
+                switch (listStrs[index].CompareTo(InputText))
                 {
                     case 1:
                         index /= 2;
@@ -79,7 +83,7 @@ namespace TK_labs
             result.Append(index);
             result.Append('|');
             for (int i = 0;i<len;i++)
-                result.Append(list[i][^-1]);
+                result.Append(listStrs[i].Last());
             return result.ToString();
         }
 
