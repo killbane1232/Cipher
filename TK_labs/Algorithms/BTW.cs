@@ -9,14 +9,14 @@ namespace TK_labs
         public double CompressionRatio { get { return GetCompressionRatio(); } }
         public BTW(string text):base(text)
         {
-            EncodedText = Encode();
-            DecodedText = Decode();
+            Encode();
+            Decode();
         }
 
         public BTW(string fileName, bool noMatter):base(fileName, noMatter)
         {
-            EncodedText = Encode();
-            DecodedText = Decode();
+            Encode();
+            Decode();
         }
 
         public string Decode()
@@ -46,6 +46,7 @@ namespace TK_labs
                 }
                 strings.Sort();
             }
+            DecodedText = strings[index];
             return strings[index];
         }
 
@@ -87,7 +88,8 @@ namespace TK_labs
             result.Append('|');
             for (int i = 0;i<len;i++)
                 result.Append(listStrs[i].Last());
-            return result.ToString();
+            EncodedText = result.ToString();
+            return EncodedText;
         }
 
         public double GetCompressionRatio()

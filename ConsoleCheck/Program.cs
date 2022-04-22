@@ -5,10 +5,9 @@ namespace ConsoleCheck
 {
     internal class Program
     {
+        static string fileName = "simple.txt";
         static void Main(string[] args)
         {
-            string fileName = "simple.txt";
-            /*
             try
             {
                 Console.WriteLine("SHF");
@@ -68,14 +67,14 @@ namespace ConsoleCheck
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }*/
-            Console.WriteLine("BTW");
-            BTW btw = new BTW(fileName, true);
-            Console.WriteLine(btw.EncodedText);
-            Console.WriteLine(btw.DecodedText);
-            Console.WriteLine(btw.CompressionRatio);
+            }
             try
             {
+                Console.WriteLine("BTW");
+                BTW btw = new BTW(fileName, true);
+                Console.WriteLine(btw.EncodedText);
+                Console.WriteLine(btw.DecodedText);
+                Console.WriteLine(btw.CompressionRatio);
             }
             catch (Exception ex)
             {
@@ -93,6 +92,18 @@ namespace ConsoleCheck
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        public void BTWRLE()
+        {
+            Console.WriteLine("BTW+RLE");
+            BTW btw = new BTW(fileName, true);
+            Console.WriteLine(btw.Encode());
+            RLE rle = new RLE(btw.EncodedText);
+            Console.WriteLine(rle.Encode());
+            Console.WriteLine(rle.Decode());
+            Console.WriteLine(rle.CompressionRatio);
+            btw.EncodedText = rle.DecodedText;
+            Console.WriteLine(btw.Decode());
         }
     }
 }

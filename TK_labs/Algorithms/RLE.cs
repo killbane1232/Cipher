@@ -10,14 +10,14 @@ namespace TK_labs
         public double CompressionRatio { get { return GetCompressionRatio(); } }
         public RLE(string text):base(text)
         {
-            EncodedText = Encode();
-            DecodedText = Decode();
+            Encode();
+            Decode();
         }
 
         public RLE(string fileName, bool noMatter):base(fileName, noMatter)
         {
-            EncodedText = Encode();
-            DecodedText = Decode();
+            Encode();
+            Decode();
         }
 
         public string Decode()
@@ -34,6 +34,7 @@ namespace TK_labs
                     result.Append(ch);
                 number = new StringBuilder();
             }
+            DecodedText = result.ToString();
             return result.ToString();
         }
 
@@ -62,6 +63,7 @@ namespace TK_labs
             result.Append(ch);
             result.Append(cnt);
             result.Append('|');
+            EncodedText = result.ToString();
             return result.ToString();
         }
 
