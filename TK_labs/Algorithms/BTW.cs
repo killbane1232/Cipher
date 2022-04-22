@@ -66,17 +66,20 @@ namespace TK_labs
             listStrs.Sort();
             var result = new StringBuilder();
             var index = len / 2;
+            var step = len / 2;
             while (listStrs[index] != InputText)
             {
                 switch (listStrs[index].CompareTo(InputText))
                 {
                     case 1:
-                        index /= 2;
+                        step /= 2;
+                        index -=step;
                         break;
                     case 0:
                         break;
                     case -1:
-                        index += index / 2;
+                        step /= 2;
+                        index += step;
                         break;
                 }
             }

@@ -8,6 +8,7 @@ namespace ConsoleCheck
         static void Main(string[] args)
         {
             string fileName = "simple.txt";
+            /*
             try
             {
                 Console.WriteLine("SHF");
@@ -67,14 +68,14 @@ namespace ConsoleCheck
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            }*/
+            Console.WriteLine("BTW");
+            BTW btw = new BTW(fileName, true);
+            Console.WriteLine(btw.EncodedText);
+            Console.WriteLine(btw.DecodedText);
+            Console.WriteLine(btw.CompressionRatio);
             try
             {
-                Console.WriteLine("BTW");
-                BTW btw = new BTW(fileName, true);
-                Console.WriteLine(btw.EncodedText);
-                Console.WriteLine(btw.DecodedText);
-                Console.WriteLine(btw.CompressionRatio);
             }
             catch (Exception ex)
             {
