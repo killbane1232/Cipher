@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TK_labs", "TK_labs\TK_labs.csproj", "{5D21AAEE-AFD8-4EDB-95A0-4BC15A057BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TK_labs", "TK_labs\TK_labs.csproj", "{5D21AAEE-AFD8-4EDB-95A0-4BC15A057BAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCheck", "ConsoleCheck\ConsoleCheck.csproj", "{18C6D558-05C8-4D39-8179-00210F2CFFCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleCheck", "ConsoleCheck\ConsoleCheck.csproj", "{18C6D558-05C8-4D39-8179-00210F2CFFCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "Form\WinForm.csproj", "{C4BF9095-1C88-49AF-8D73-A6607091297C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{18C6D558-05C8-4D39-8179-00210F2CFFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18C6D558-05C8-4D39-8179-00210F2CFFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18C6D558-05C8-4D39-8179-00210F2CFFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BF9095-1C88-49AF-8D73-A6607091297C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BF9095-1C88-49AF-8D73-A6607091297C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BF9095-1C88-49AF-8D73-A6607091297C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BF9095-1C88-49AF-8D73-A6607091297C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
