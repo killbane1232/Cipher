@@ -61,6 +61,8 @@ namespace TK_labs
                 for (int j = 0; j < i; j++)
                 {
                     int len = 0;
+                    if(InputText[j]!=InputText[i])
+                        continue;
                     for (int k = j; k < i; k++)
                         if (i + k - j< InputText.Length && InputText[k] == InputText[i + k - j])
                         {

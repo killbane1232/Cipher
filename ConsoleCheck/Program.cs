@@ -5,7 +5,7 @@ namespace ConsoleCheck
 {
     internal class Program
     {
-        static string fileName = "simple.txt";
+        static string fileName = "input.txt";
         static void Main(string[] args)
         {
             try
