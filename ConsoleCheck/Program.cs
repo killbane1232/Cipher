@@ -92,8 +92,16 @@ namespace ConsoleCheck
             {
                 Console.WriteLine(ex.Message);
             }
+            try
+            {
+                BTWRLE();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
-        public void BTWRLE()
+        public static void BTWRLE()
         {
             Console.WriteLine("BTW+RLE");
             BTW btw = new BTW(fileName, true);

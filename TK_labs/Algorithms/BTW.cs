@@ -74,12 +74,16 @@ namespace TK_labs
                 {
                     case 1:
                         step /= 2;
+                        if(step <1)
+                            step = 1;
                         index -=step;
                         break;
                     case 0:
                         break;
                     case -1:
                         step /= 2;
+                        if (step < 1)
+                            step = 1;
                         index += step;
                         break;
                 }
