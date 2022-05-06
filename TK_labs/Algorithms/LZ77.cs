@@ -64,10 +64,12 @@ namespace TK_labs
                     if(InputText[j]!=InputText[i])
                         continue;
                     for (int k = j; k < i; k++)
-                        if (i + k - j< InputText.Length && InputText[k] == InputText[i + k - j])
+                        if (i + k - j < InputText.Length && InputText[k] == InputText[i + k - j])
                         {
                             len++;
                         }
+                        else
+                            break;
                     if(len> maxLen)
                     {
                         maxLen = len;
