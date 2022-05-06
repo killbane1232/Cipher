@@ -72,7 +72,8 @@ namespace WinForm
                     "Arithmetic" => new Arithmetic(InputTextBox.Text),
                     "LZ77" => new LZ77(InputTextBox.Text),
                     "LZ78" => new LZ78(InputTextBox.Text),
-                    "BW&RLE" => new BTW(InputTextBox.Text),
+                    "BW" => new BTW(InputTextBox.Text),
+                    "RLE" => new RLE(InputTextBox.Text),
                     _ => throw new Exception("Choose algorithm and try again!")
                 };
             }

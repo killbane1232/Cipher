@@ -43,10 +43,6 @@ namespace TK_labs
                 symbol.Append(c);
                 if (Encoding.ContainsValue(symbol.ToString()))
                 {
-                    //Хз какой из этих вариантов лучше, на глаз работают одинаково.
-                    //Надо будет подумать над другим способом получть ключ по значению, ибо это капец как долго.
-                    //encoding.Where(x => x.Value == symbol.ToString()).First().Key
-                    //(from pair in encoding where pair.Value == symbol.ToString() select pair).First().Key
                     result.Append(Encoding.Where(x => x.Value == symbol.ToString()).First().Key);
                     symbol = new StringBuilder();
                 }

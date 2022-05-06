@@ -53,7 +53,8 @@
             "Arithmetic",
             "LZ77",
             "LZ78",
-            "BWT&RLE"});
+            "BW",
+            "RLE"});
             this.AlgoName.Location = new System.Drawing.Point(6, 22);
             this.AlgoName.Name = "AlgoName";
             this.AlgoName.Size = new System.Drawing.Size(164, 23);
