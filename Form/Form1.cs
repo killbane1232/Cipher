@@ -83,5 +83,29 @@ namespace WinForm
                 return;
             }
         }
+
+        private void EncodeButtonP2_Click(object sender, EventArgs e)
+        {
+            algo = AlgoNameP2.Text switch
+            { 
+                "Hamming (7,4)" => new Hamming_7_4_(InputTextBox.Text),
+                "Linear (5,2)" => new Code2_5(InputTextBox.Text),
+                _ => throw new Exception("Choose algorithm and try again!")
+            };
+
+            OutputTextBox.Text = algo.EncodedText;
+        }
+
+        private void DecodeButtonP2_Click(object sender, EventArgs e)
+        {
+            algo = AlgoNameP2.Text switch
+            {
+                "Hamming (7,4)" => new Hamming_7_4_(InputTextBox.Text),
+                "Linear (5,2)" => new Code2_5(InputTextBox.Text),
+                _ => throw new Exception("Choose algorithm and try again!")
+            };
+
+            OutputTextBox.Text = algo.DecodedText;
+        }
     }
 }

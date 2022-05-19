@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TK_labs
 {
-    public class Code2_5:ICoding
+    public class Code2_5 : Algorithm, ICoding
     {
         //00 00000 мин расст 3
         //01 01011 мин расст 3
@@ -34,6 +34,15 @@ namespace TK_labs
         };
 
         public string input;
+
+        public Code2_5(string text) : base(text)
+        {
+            input = InputText;
+            if (InputText.Length == 2)
+                EncodedText = Encode();
+            else if (InputText.Length == 5)
+                DecodedText = Decode();
+        }
 
         public double CompressionRatio => throw new NotImplementedException();
 
@@ -76,7 +85,7 @@ namespace TK_labs
                 for (int j = 0; j < 2; j++)
                     res+=inputBits[j] & 1;
             }
-            res += '\n';
+            res += ' ';
             for (int i = 0; i < syndrs.Count; i++) {
                 for (int j = 0; j < 3; j++)
                     res += syndrs[i][j] & 1;

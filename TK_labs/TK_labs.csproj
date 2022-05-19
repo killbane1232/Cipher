@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Linear.Net" Version="1.0.0.5" />
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
