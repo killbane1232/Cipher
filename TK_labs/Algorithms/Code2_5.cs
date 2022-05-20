@@ -48,6 +48,7 @@ namespace TK_labs
 
         public string Decode()
         {
+            string v = "";
             var res = "";
             List<int[]> syndrs = new List<int[]>();
             for(int i = 0; i < input.Length - 4; i += 5) 
@@ -80,7 +81,10 @@ namespace TK_labs
 
                 syndr2 &= 7;
                 for (int j = 0; j < 5; j++)
+                {
                     inputBits[j] ^= A[syndr2][j];
+                    v += A[syndr2][j];
+                }
                 
                 for (int j = 0; j < 2; j++)
                     res+=inputBits[j] & 1;
@@ -91,6 +95,7 @@ namespace TK_labs
                     res += syndrs[i][j] & 1;
                 res += ' ';
             }
+            res += v;
             return res;
         }
 
